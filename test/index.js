@@ -73,3 +73,29 @@ describe("Match objects checker", function() {
     boolWrapper(constraints, {}).should.not.be.true;
   });
 });
+
+describe("Functional tests", function() {
+  it("should work on complex use case", function() {
+    // use case from anyfetch.com
+    var constraints = {
+      documentType: {
+        name: "file"
+      },
+      metadatas: {
+        path: {
+          $match: /\.doc$/
+        }
+      },
+      hydratedBy: {
+        $contains: 'http://plaintext.hydrater.anyfetch.com'
+      }
+    };
+
+    boolWrapper(constraints, {documentType: {id: 123, name: "file"}, metadatas: {path: "/home/document.doc"}, hydratedBy: ['http://plaintext.hydrater.anyfetch.com']}).should.be.true;
+    boolWrapper(constraints, {documentType: {id: 123, name: "file"}, metadatas: {path: "/home/document.doc"}, hydratedBy: ['http://plaintext.hydrater.anyfetch.com', 'hello there']}).should.be.true;
+    boolWrapper(constraints, {documentType: {id: 123, name: "document"}, metadatas: {path: "/home/document.doc"}, hydratedBy: ['http://plaintext.hydrater.anyfetch.com']}).should.not.be.true;
+    boolWrapper(constraints, {documentType: {id: 123, name: "file"}, metadatas: {path: "/home/document.docx"}, hydratedBy: ['http://plaintext.hydrater.anyfetch.com']}).should.not.be.true;
+    boolWrapper(constraints, {metadatas: {path: "/home/document.doc"}}).should.not.be.true;
+    boolWrapper(constraints, {documentType: {id: 123, name: "file"}, metadatas: {path: "/home/document.doc"}}).should.not.be.true;
+  });
+});
