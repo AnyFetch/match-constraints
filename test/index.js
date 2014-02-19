@@ -72,6 +72,16 @@ describe("Match objects checker", function() {
     boolWrapper(constraints, {sub: {name: "lol"}}).should.not.be.true;
     boolWrapper(constraints, {}).should.not.be.true;
   });
+
+  it("should fail for unknown constraints", function() {
+    var constraints = {
+      name: {
+        $foo: "tsointsoin"
+      }
+    };
+
+    boolWrapper(constraints, {name: "lol"}).should.not.be.true;
+  });
 });
 
 describe("Functional tests", function() {
