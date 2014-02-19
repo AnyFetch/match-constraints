@@ -5,7 +5,7 @@ Match Constraints
 [![NPM version](https://badge.fury.io/js/anyfetch-file-hydrater.png)](http://badge.fury.io/js/match-constraint)
 
 Check a JS object match specified constraints.
-This is for simple object matching. If you require more advanced manipulation, other libraries can be fine
+This is for simple object matching. If you require more advanced manipulation, other libraries will probably be better, see for instance `validator.js`.
 
 ## Install
 ```sh
