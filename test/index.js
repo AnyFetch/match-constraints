@@ -60,4 +60,16 @@ describe("Match objects checker", function() {
     boolWrapper(constraints, {values: "lol"}).should.not.be.true;
     boolWrapper(constraints, {}).should.not.be.true;
   });
+
+  it("should work on subfields", function() {
+    var constraints = {
+      sub: {
+        name: "hello"
+      }
+    };
+
+    boolWrapper(constraints, {sub: {name: "hello"}}).should.be.true;
+    boolWrapper(constraints, {sub: {name: "lol"}}).should.not.be.true;
+    boolWrapper(constraints, {}).should.not.be.true;
+  });
 });
