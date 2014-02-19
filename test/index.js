@@ -2,7 +2,9 @@
 
 require("should");
 
-var matchConstraints = require('../lib');
+var lib = require('../lib');
+var matchConstraints = lib.matchConstraints;
+var matchConstraintsBool = lib.matchConstraintsBool;
 
 describe("Match objects checker", function() {
   it("should check for property value", function() {
@@ -10,8 +12,8 @@ describe("Match objects checker", function() {
       name: "hello"
     };
 
-    matchConstraints(constraints, {name: "hello"}).should.be.true;
-    matchConstraints(constraints, {name: "hllo"}).should.be.false;
-    matchConstraints(constraints, {}).should.be.false;
+    matchConstraintsBool(constraints, {name: "hello"}).should.be.true;
+    matchConstraintsBool(constraints, {name: "hllo"}).should.be.false;
+    matchConstraintsBool(constraints, {}).should.be.false;
   });
 });
