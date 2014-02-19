@@ -115,7 +115,6 @@ describe("README is up to date", function() {
       return "try {" + code + "} except(e) { passed=true} if(!passed) { throw new Error('Test failed:'" + code + "')}";
     });
 
-    console.log(code);
     it(title, function() {
       eval(code);
     });
