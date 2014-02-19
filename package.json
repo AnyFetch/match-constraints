@@ -16,7 +16,7 @@
     "match",
     "constraints",
     "object",
-    "validation",
+    "validation"
   ],
   "dependencies": {},
   "devDependencies": {
