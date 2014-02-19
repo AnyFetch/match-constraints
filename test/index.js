@@ -99,3 +99,25 @@ describe("Functional tests", function() {
     boolWrapper(constraints, {documentType: {id: 123, name: "file"}, metadatas: {path: "/home/document.doc"}}).should.not.be.true;
   });
 });
+
+
+describe("README is up to date", function() {
+  // Read the README and check examples works as advertised.
+  var readme = require('fs').readFileSync(__dirname + '/../README.md').toString();
+  var code = readme.match(/```javascript((.|\n)+)```/)[1];
+  code.split(/\/\*/).slice(1).forEach(function(testSection) {
+    var title = testSection.substr(0, testSection.indexOf('*'));
+    var code = testSection.substr(testSection.indexOf("\n"));
+
+    // replace throws
+    code = "var passed = false;\n" + code;
+    code = code.replace(/\n(.+) \/\/ throw/g, function(matches, code) {
+      return "try {" + code + "} except(e) { passed=true} if(!passed) { throw new Error('Test failed:'" + code + "')}";
+    });
+
+    console.log(code);
+    it(title, function() {
+      eval(code);
+    });
+  });
+});

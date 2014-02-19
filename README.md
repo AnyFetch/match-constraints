@@ -13,7 +13,8 @@ $ npm install match-constraints
 ```
 
 ## Usage
-```
+
+```javascript
 // You may use matchConstraints to throw errors on constraints failures, ot matchConstraintsBool to return false on failures.
 var matchConstraints = require('match-constraints').matchConstraints;
 
@@ -57,5 +58,5 @@ var constraints = {
 };
 
 matchConstraints(constraints, {name: "hello", values: {foo: [1, 2, 3, 4]}}); // OK
-matchConstraints(constraints, {values: [1, 2, 3, 4]}); // throws Error "[foo]: object does not define the key"```
+matchConstraints(constraints, {values: [1, 2, 3, 4]}); // throws Error "[foo]: object does not define the key"
 ```
