@@ -37,6 +37,12 @@ var constraints = {
 matchConstraints(constraints, {name: "hello", foo: "bar"}); // OK
 matchConstraints(constraints, {name: "hellos", foo: "bar"}); // throws Error "[name]: hellos does not match /h.+o$/"
 
+// Or shortcut notation
+var constraints = {
+    name: /h.+o$/
+}
+matchConstraints(constraints, {name: "hello", foo: "bar"}); // OK
+
 /* $contains: array checks */
 var constraints = {
     values: {

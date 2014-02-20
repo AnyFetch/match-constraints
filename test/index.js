@@ -61,6 +61,15 @@ describe("Match objects checker", function() {
     boolWrapper(constraints, {}).should.not.be.true;
   });
 
+  it("should use $match shortcut", function() {
+    var constraints = {
+      values: /h.+o/
+    };
+
+    boolWrapper(constraints, {values: "hello"}).should.be.true;
+    boolWrapper(constraints, {values: "lol"}).should.not.be.true;
+    boolWrapper(constraints, {}).should.not.be.true;
+  });
   it("should work on subfields", function() {
     var constraints = {
       sub: {
