@@ -54,6 +54,16 @@ matchConstraints(constraints, {values: [1, 2, 3, 4]}); // OK
 matchConstraints(constraints, {values: 4}); // OK
 matchConstraints(constraints, {values: [1, 2, 3]}); // throws Error "[values]: 1,2,3 does not contains 4"
 
+/* $missing: existence checks */
+var constraints = {
+    notDefined: {
+        $missing: true
+    }
+};
+
+matchConstraints(constraints, {}); // OK
+matchConstraints(constraints, {notDefined: [1, 2, 3, 4]}); // throws Error "[notDefined]: 1,2,3,4 should not be defined"
+
 /* Recursive matching */
 var constraints = {
     values: {
