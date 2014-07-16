@@ -10,7 +10,7 @@
   "main": "./lib",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Papiel/match-constraints/"
+    "url": "https://github.com/AnyFetch/match-constraints/"
   },
   "keywords": [
     "match",
