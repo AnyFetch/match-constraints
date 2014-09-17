@@ -74,6 +74,17 @@ var constraints = {
 matchConstraints(constraints, {array: []}); // OK
 matchConstraints(constraints, {array: [1, 2, 3, 4]}); // throws Error "[empty]: 1,2,3,4 is not empty"
 
+/* $empty: allowing missing field*/
+var constraints = {
+    array: {
+        $empty: 'allowMissing',
+    }
+};
+
+matchConstraints(constraints, {}); // OK
+matchConstraints(constraints, {array: []}); // OK
+matchConstraints(constraints, {array: [1, 2, 3, 4]}); // throws Error "[empty]: 1,2,3,4 is not empty"
+
 /* Recursive matching */
 var constraints = {
     values: {
