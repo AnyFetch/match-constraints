@@ -72,6 +72,30 @@ describe("Match objects checker", function() {
     boolWrapper(constraints, {}).should.be.true;
   });
 
+  it("should check for $empty", function() {
+    var constraints = {
+      values: {
+        $empty: true
+      }
+    };
+
+    boolWrapper(constraints, {values: []}).should.be.true;
+    boolWrapper(constraints, {values: [1]}).should.not.be.true;
+    boolWrapper(constraints, {}).should.not.be.true;
+  });
+
+  it("should check for $empty allowing missing", function() {
+    var constraints = {
+      values: {
+        $empty: 'allowMissing'
+      }
+    };
+
+    boolWrapper(constraints, {values: []}).should.be.true;
+    boolWrapper(constraints, {values: [1]}).should.not.be.true;
+    boolWrapper(constraints, {}).should.be.true;
+  });
+
   it("should use $match shortcut", function() {
     var constraints = {
       values: /h.+o/

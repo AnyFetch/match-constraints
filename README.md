@@ -64,6 +64,28 @@ var constraints = {
 matchConstraints(constraints, {}); // OK
 matchConstraints(constraints, {notDefined: [1, 2, 3, 4]}); // throws Error "[notDefined]: 1,2,3,4 should not be defined"
 
+/* $empty: emptiness checks */
+var constraints = {
+    array: {
+        $empty: true
+    }
+};
+
+matchConstraints(constraints, {array: []}); // OK
+matchConstraints(constraints, {array: [1, 2, 3, 4]}); // throws Error "[array]: 1,2,3,4 is not empty"
+matchConstraints(constraints, {}); // throws Error "[array]: object does not define the key.", see below to allow for missing key
+
+/* $empty: allowing missing field*/
+var constraints = {
+    array: {
+        $empty: 'allowMissing',
+    }
+};
+
+matchConstraints(constraints, {}); // OK
+matchConstraints(constraints, {array: []}); // OK
+matchConstraints(constraints, {array: [1, 2, 3, 4]}); // throws Error "[array]: 1,2,3,4 is not empty"
+
 /* Recursive matching */
 var constraints = {
     values: {
