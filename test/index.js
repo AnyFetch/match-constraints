@@ -96,6 +96,18 @@ describe("Match objects checker", function() {
     boolWrapper(constraints, {}).should.be.true;
   });
 
+  it("should check for $notEmpty", function() {
+    var constraints = {
+      values: {
+        $notEmpty: true
+      }
+    };
+
+    boolWrapper(constraints, {values: []}).should.not.be.true;
+    boolWrapper(constraints, {values: [1]}).should.be.true;
+    boolWrapper(constraints, {}).should.not.be.true;
+  });
+
   it("should use $match shortcut", function() {
     var constraints = {
       values: /h.+o/
@@ -167,7 +179,7 @@ describe("README is up to date", function() {
     // replace throws
     code = "var passed = false;\n" + code;
     code = code.replace(/\n(.+) \/\/ throw/g, function(matches, code) {
-      return "try {" + code + "} except(e) { passed=true} if(!passed) { throw new Error('Test failed:'" + code + "')}";
+      return "\ntry {" + code + "} catch(e) { passed=true} if(!passed) { throw new Error('Test failed:" + code + "')}; //";
     });
 
     it(title, function() {

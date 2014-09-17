@@ -86,6 +86,16 @@ matchConstraints(constraints, {}); // OK
 matchConstraints(constraints, {array: []}); // OK
 matchConstraints(constraints, {array: [1, 2, 3, 4]}); // throws Error "[array]: 1,2,3,4 is not empty"
 
+/* $notEmpty: non emptiness checks*/
+var constraints = {
+    array: {
+        $notEmpty: true,
+    }
+};
+
+matchConstraints(constraints, {array: []}); // throws Error "[array]:  is empty"
+matchConstraints(constraints, {array: [1, 2, 3, 4]}); // OK
+
 /* Recursive matching */
 var constraints = {
     values: {
