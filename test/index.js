@@ -49,6 +49,21 @@ describe("Match objects checker", function() {
     boolWrapper(constraints, {}).should.not.be.true;
   });
 
+  it("should check for $containsTypeInsensitive", function() {
+    var constraints = {
+      values: {
+        $containsTypeInsensitive: "42"
+      }
+    };
+
+    boolWrapper(constraints, {values: ['42', 'hello', 'bonjour']}).should.be.true;
+    boolWrapper(constraints, {values: "42"}).should.be.true;
+    boolWrapper(constraints, {values: [42, 'hello', 'bonjour']}).should.be.true;
+    boolWrapper(constraints, {values: 42}).should.be.true;
+    boolWrapper(constraints, {values: ['43']}).should.not.be.true;
+    boolWrapper(constraints, {}).should.not.be.true;
+  });
+
   it("should check for $match", function() {
     var constraints = {
       values: {
