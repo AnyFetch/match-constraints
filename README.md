@@ -54,7 +54,7 @@ matchConstraints(constraints, {values: [1, 2, 3, 4]}); // OK
 matchConstraints(constraints, {values: 4}); // OK
 matchConstraints(constraints, {values: [1, 2, 3]}); // throws Error "[values]: 1,2,3 does not contains 4"
 
-/* $containsTypeInsensitive: array checks */
+/* $containsTypeInsensitive: array checks with type tolerance */
 var constraints = {
     values: {
         $containsTypeInsensitive: 4
